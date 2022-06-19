@@ -26,7 +26,7 @@ func (p *AuthPostgres) CreateUser(user models.User) (int, error) {
 		return 0, errors.New("this username is already in use")
 	}
 
-	result, err := p.db.Exec("INSERT INTO users (username, password, firstname, lastname) VALUES ($1, $2, $3, $4)",
+	result, err := p.db.Exec("INSERT INTO users (username, password, first_name, last_name) VALUES ($1, $2, $3, $4)",
 		user.Username, user.Password, user.Firstname, user.Lastname,
 	)
 	if err != nil {
@@ -47,8 +47,6 @@ func (p *AuthPostgres) GetUser(username, password string) (models.User, error) {
 	var user models.User
 	query := "SELECT id FROM users WHERE username=$1 AND password=$2"
 	err := p.db.Get(&user, query, username, password)
-
-	fmt.Printf("Selected user: %+v\n\ninput user: %+v", user, &models.User{Username: username, Password: password})
 
 	return user, err
 }

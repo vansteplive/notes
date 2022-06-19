@@ -12,8 +12,8 @@ type Authorization interface {
 }
 
 type Note interface {
-	CreateNote(note models.NoteItem) (int, error)
-	GetAll() ([]models.NoteItem, error)
+	CreateNote(userId int, note models.NoteItem) (int, error)
+	GetAll(userId int) ([]models.NoteItem, error)
 }
 
 type Service struct {

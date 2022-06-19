@@ -15,10 +15,10 @@ func NewNoteItemPostgres(repos repository.NoteItem) *NoteItemService {
 	}
 }
 
-func (s *NoteItemService) CreateNote(item models.NoteItem) (int, error) {
-	return s.repos.Create(item)
+func (s *NoteItemService) CreateNote(userId int, item models.NoteItem) (int, error) {
+	return s.repos.Create(userId, item)
 }
 
-func (s *NoteItemService) GetAll() ([]models.NoteItem, error) {
-	return s.repos.GetAll()
+func (s *NoteItemService) GetAll(userId int) ([]models.NoteItem, error) {
+	return s.repos.GetAll(userId)
 }

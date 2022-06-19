@@ -11,8 +11,8 @@ type Authorization interface {
 }
 
 type NoteItem interface {
-	Create(item models.NoteItem) (int, error)
-	GetAll() ([]models.NoteItem, error)
+	Create(userId int, item models.NoteItem) (int, error)
+	GetAll(userId int) ([]models.NoteItem, error)
 }
 
 type Repository struct {
